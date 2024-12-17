@@ -1,60 +1,139 @@
 using System;
+using _Source.Script.Game;
 using UnityEngine;
 
 namespace _Source.Script.Player
 {
     public class PlayerMovment : MonoBehaviour
-    {
-        [SerializeField] private float moveSpeed = 5f; // Скорость движения
-        [SerializeField] private SpriteRenderer spriteRenderer; // Компонент SpriteRenderer персонажа
-        [SerializeField] private Sprite upSprite;
-        [SerializeField] private Sprite downSprite;
-        [SerializeField] private Sprite leftSprite;
-        [SerializeField] private Sprite rightSprite;
+    { 
+        [SerializeField] private SpriteRenderer playerSpriteRenderer; // SpriteRenderer игрока
 
-        [SerializeField] private Weapon weaponController; // Ссылка на скрипт оружия
+        [Header("Player Sprites")]
+        [SerializeField] private Sprite spriteUp;    // Спрайт вверх
+        [SerializeField] private Sprite spriteDown;  // Спрайт вниз
+        [SerializeField] private Sprite spriteLeft;  // Спрайт влево
+        [SerializeField] private Sprite spriteRight; // Спрайт вправо
 
-        private Vector3 targetPosition;
+        private Rigidbody2D rb;
+        private Vector2 movement;
+        private bool isMousePressed; // Проверка нажатия ЛКМ
+        private bool isMoving; // Флаг, показывающий, что игрок двигается
+        private bool canMove; // Флаг, разрешающий движение (используется для проверки нажатия клавиш)
+
+        private void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            canMove = true; // Игрок может двигаться при старте
+        }
 
         private void Update()
         {
-            // Получаем позицию мыши в мировых координатах
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            targetPosition.z = 0; // Сбрасываем Z, чтобы остаться в 2D
+            // Проверка нажатия ЛКМ
+            isMousePressed = Input.GetMouseButton(0);
 
-            // Проверяем нажатие клавиши W
-            if (Input.GetKey(KeyCode.W))
+            // Если мышь нажата, останавливаем движение и поворачиваем игрока в сторону мыши
+            if (isMousePressed)
             {
-                MoveToTarget(targetPosition);
+                StopMovementAndLookAtMouse();
+            }
+            else
+            {
+                // Если клавиша для движения нажата и движение разрешено, двигаем игрока
+                if (canMove && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+                {
+                    movement.x = Input.GetAxisRaw("Horizontal");
+                    movement.y = Input.GetAxisRaw("Vertical");
+                    isMoving = true;
+                }
+                else
+                {
+                    isMoving = false;
+                }
+
+                if (isMoving)
+                {
+                    MovePlayer();
+                    UpdatePlayerDirection();
+                }
             }
         }
 
-        private void MoveToTarget(Vector3 targetPosition)
+        private void FixedUpdate()
         {
-            // Рассчитываем направление к цели
-            Vector3 direction = (targetPosition - transform.position).normalized;
-
-            // Двигаем игрока в направлении цели
-            transform.position += direction * moveSpeed * Time.deltaTime;
-
-            // Смена спрайта персонажа
-            if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x)) // Больше движение по вертикали
+            // Если движение разрешено, двигаем игрока по физике
+            if (isMoving && !isMousePressed)
             {
-                if (direction.y > 0)
-                    spriteRenderer.sprite = upSprite; // Движение вверх
-                else
-                    spriteRenderer.sprite = downSprite; // Движение вниз
+                rb.velocity = movement.normalized * 5f; // Скорость = 5
             }
-            else // Больше движение по горизонтали
+            else if (!isMousePressed)
             {
-                if (direction.x > 0)
-                    spriteRenderer.sprite = rightSprite; // Движение вправо
+                rb.velocity = Vector2.zero; // Останавливаем движение, если мышь не нажата
+            }
+        }
+
+        private void MovePlayer()
+        {
+            // Двигаем игрока по физике
+            rb.velocity = movement.normalized * 5f;
+        }
+
+        private void UpdatePlayerDirection()
+        {
+            // Поворот игрока в зависимости от направления движения
+            if (!isMousePressed)
+            {
+                if (movement.y > 0)
+                    playerSpriteRenderer.sprite = spriteUp; // Вверх
+                else if (movement.y < 0)
+                    playerSpriteRenderer.sprite = spriteDown; // Вниз
+                else if (movement.x > 0)
+                    playerSpriteRenderer.sprite = spriteRight; // Вправо
+                else if (movement.x < 0)
+                    playerSpriteRenderer.sprite = spriteLeft; // Влево
+            }
+        }
+
+        private void StopMovementAndLookAtMouse()
+        {
+            // Останавливаем движение и поворачиваем игрока к мыши
+            rb.velocity = Vector2.zero;
+
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 directionToMouse = (mousePosition - transform.position).normalized;
+
+            // Поворот игрока в сторону мыши
+            if (Mathf.Abs(directionToMouse.x) > Mathf.Abs(directionToMouse.y))
+            {
+                if (directionToMouse.x > 0)
+                    playerSpriteRenderer.sprite = spriteRight; // Вправо
                 else
-                    spriteRenderer.sprite = leftSprite; // Движение влево
+                    playerSpriteRenderer.sprite = spriteLeft; // Влево
+            }
+            else
+            {
+                if (directionToMouse.y > 0)
+                    playerSpriteRenderer.sprite = spriteUp; // Вверх
+                else
+                    playerSpriteRenderer.sprite = spriteDown; // Вниз
             }
 
-            // Передаём направление в скрипт оружия
-            weaponController.SetDirection(direction);
+            // Когда ЛКМ нажата, движение игрока запрещено
+            canMove = false;
+        }
+
+        // Когда отпускаем клавишу для движения (например, "W", "A", "S", "D"), разрешаем движение
+        private void EnableMovement()
+        {
+            canMove = true;
+        }
+
+        private void LateUpdate()
+        {
+            // Восстанавливаем движение, если мышь отпущена
+            if (!isMousePressed)
+            {
+                canMove = true; // Разрешаем движение, когда мышь отпущена
+            }
         }
     }
 }
