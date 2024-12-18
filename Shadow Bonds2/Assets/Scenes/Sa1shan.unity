@@ -282,6 +282,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!1 &931665420
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +652,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101549851}
   m_CullTransparentMesh: 1
+=======
+--- !u!1 &1583219271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8376463676249503116, guid: 053688404afbe2841be377d28f68ca4e, type: 3}
+  m_PrefabInstance: {fileID: 1151394798773354406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1583219272
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583219271}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bd839b611114ffb468ab6d481e968036, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+>>>>>>> Stashed changes
 --- !u!1001 &1151394798773354406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -699,6 +728,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 5764100036204997154, guid: 053688404afbe2841be377d28f68ca4e, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764100036204997154, guid: 053688404afbe2841be377d28f68ca4e, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215389672735324821, guid: 053688404afbe2841be377d28f68ca4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 8376463676249503116, guid: 053688404afbe2841be377d28f68ca4e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -706,7 +750,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8376463676249503116, guid: 053688404afbe2841be377d28f68ca4e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1583219272}
   m_SourcePrefab: {fileID: 100100000, guid: 053688404afbe2841be377d28f68ca4e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
