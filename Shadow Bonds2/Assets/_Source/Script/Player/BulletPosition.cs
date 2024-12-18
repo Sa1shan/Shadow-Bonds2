@@ -1,14 +1,21 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Source.Script.Player
 {
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer; // SpriteRenderer для объекта
-        [SerializeField] private Sprite spriteUp;   // Спрайт для движения вверх
-        [SerializeField] private Sprite spriteDown; // Спрайт для движения вниз
-        [SerializeField] private Sprite spriteLeft; // Спрайт для движения влево
-        [SerializeField] private Sprite spriteRight;// Спрайт для движения вправо
+        
+        [SerializeField] private Sprite NSide;
+        [SerializeField] private Sprite SSide;
+        [SerializeField] private Sprite WSide;
+        [SerializeField] private Sprite ESide;
+        [SerializeField] private Sprite WNSide;
+        [SerializeField] private Sprite NESide;
+        [SerializeField] private Sprite WSSide;
+        [SerializeField] private Sprite SESide;
         
         private Rigidbody2D _rb; // Ссылка на Rigidbody2D пули
         private Vector2 _direction; // Направление пули
@@ -27,36 +34,55 @@ namespace _Source.Script.Player
             _rb.velocity = _direction * bulletSpeed;
         }
 
+        private void Update()
+        {
+            if (IsOutOfBounds())
+            {
+                Destroy(gameObject); // Удаляем пулю, если она вышла за пределы камеры
+            }
+        }
+
         public void SetDirection(Vector2 newDirection)
         {
             _direction = newDirection; // Устанавливаем направление пули
+            SetSpriteBasedOnDirection(_direction); // Фиксируем спрайт при выстреле
         }
-        
-        private void Update()
+    
+        private void SetSpriteBasedOnDirection(Vector2 direction)
         {
-            ChangeSpriteBasedOnMousePosition();
-        }
-        
-        private void ChangeSpriteBasedOnMousePosition()
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 directionToMouse = (mousePosition - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            // Поворот спрайта в зависимости от положения мыши
-            if (Mathf.Abs(directionToMouse.x) > Mathf.Abs(directionToMouse.y))
+            // Проверяем угол и назначаем спрайт на основе диапазона углов
+            if (angle >= -22.5f && angle < 22.5f)           // Право (синий)
+                spriteRenderer.sprite = ESide;
+            else if (angle >= 22.5f && angle < 67.5f)       // Право-вверх (правый фиолетовый)
+                spriteRenderer.sprite = NESide;
+            else if (angle >= 67.5f && angle < 112.5f)      // Вверх (верхний синий)
+                spriteRenderer.sprite = NSide;
+            else if (angle >= 112.5f && angle < 157.5f)     // Лево-вверх (левый фиолетовый)
+                spriteRenderer.sprite = WNSide;
+            else if ((angle >= 157.5f && angle <= 180f) || (angle >= -180f && angle < -157.5f)) // Лево (зелёный)
+                spriteRenderer.sprite = WSide;
+            else if (angle >= -157.5f && angle < -112.5f)   // Лево-вниз (левый фиолетовый)
+                spriteRenderer.sprite = WSSide;
+            else if (angle >= -112.5f && angle < -67.5f)    // Вниз (нижний синий)
+                spriteRenderer.sprite = SSide;
+            else if (angle >= -67.5f && angle < -22.5f)     // Право-вниз (правый фиолетовый)
+                spriteRenderer.sprite = SESide;
+        }
+        
+        bool IsOutOfBounds()
+        {
+            // Преобразуем позицию объекта в координаты экрана
+            Vector3 screenPos = Camera.main.WorldToViewportPoint(transform.position);
+
+            // Проверяем, если объект находится за пределами экрана
+            if (screenPos.x < 0 || screenPos.x > 1 || screenPos.y < 0 || screenPos.y > 1)
             {
-                if (directionToMouse.x > 0)
-                    spriteRenderer.sprite = spriteRight; // Вправо
-                else
-                    spriteRenderer.sprite = spriteLeft;  // Влево
+                return true; // Объект за пределами экрана
             }
-            else
-            {
-                if (directionToMouse.y > 0)
-                    spriteRenderer.sprite = spriteUp;   // Вверх
-                else
-                    spriteRenderer.sprite = spriteDown; // Вниз
-            }
+
+            return false; // Объект внутри экрана
         }
     }
 }
