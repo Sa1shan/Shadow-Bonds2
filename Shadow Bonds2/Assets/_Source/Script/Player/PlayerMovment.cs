@@ -5,10 +5,11 @@ using UnityEngine;
 namespace _Source.Script.Player
 {
     public class PlayerMovment : MonoBehaviour
-    { 
-        [SerializeField] private SpriteRenderer playerSpriteRenderer; // SpriteRenderer игрока
-
+    {
+        [SerializeField] private Weapon weapon;
+        
         [Header("Player Sprites")]
+        [SerializeField] private SpriteRenderer playerSpriteRenderer; // SpriteRenderer игрока
         [SerializeField] private Sprite spriteUp;    // Спрайт вверх
         [SerializeField] private Sprite spriteDown;  // Спрайт вниз
         [SerializeField] private Sprite spriteLeft;  // Спрайт влево
@@ -28,6 +29,8 @@ namespace _Source.Script.Player
 
         private void Update()
         {
+            weapon.ismoving = rb.velocity.magnitude > 0.1f;
+            
             // Проверка нажатия ЛКМ
             isMousePressed = Input.GetMouseButton(0);
 
