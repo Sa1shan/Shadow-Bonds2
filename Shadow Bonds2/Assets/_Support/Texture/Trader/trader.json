@@ -1,0 +1,161 @@
+{ "skeleton": { "images": "C:/Users/FoshChu/OneDrive/Изображения/Рисунки/ччччччч/Новая папка/trader/images/" },
+"PhotoshopToSpine": { "scale": 1, "padding": 1, "trim": true },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Paper", "bone": "root" },
+	{ "name": "Layer 3 Copy 4", "bone": "root", "attachment": "Layer 3 Copy 4" },
+	{ "name": "Layer 3 Copy 5", "bone": "root", "attachment": "Layer 3 Copy 5" },
+	{ "name": "Layer 3", "bone": "root", "attachment": "Layer 3" },
+	{ "name": "Layer 3 Copy 3", "bone": "root", "attachment": "Layer 3 Copy 3" },
+	{ "name": "Layer 3 Copy 9", "bone": "root", "attachment": "Layer 3 Copy 9" },
+	{ "name": "Layer 3 Copy 8", "bone": "root", "attachment": "Layer 3 Copy 8" },
+	{ "name": "Layer 3 Copy 7", "bone": "root", "attachment": "Layer 3 Copy 7" },
+	{ "name": "Layer 3 Copy 6", "bone": "root", "attachment": "Layer 3 Copy 6" },
+	{ "name": "Layer 2 Copy", "bone": "root", "attachment": "Layer 2 Copy" },
+	{ "name": "Layer 7", "bone": "root", "attachment": "Layer 7" },
+	{ "name": "Слой 1", "bone": "root", "attachment": "Слой 1" },
+	{ "name": "Layer 2 Copy 3", "bone": "root", "attachment": "Layer 2 Copy 3" },
+	{ "name": "Layer 2 Copy 4", "bone": "root", "attachment": "Layer 2 Copy 4" },
+	{ "name": "Layer 2 Copy 5", "bone": "root", "attachment": "Layer 2 Copy 5" },
+	{ "name": "Layer 2 Copy 2", "bone": "root", "attachment": "Layer 2 Copy 2" },
+	{ "name": "Layer 2 Copy 6", "bone": "root", "attachment": "Layer 2 Copy 6" },
+	{ "name": "Layer 13", "bone": "root", "attachment": "Layer 13" },
+	{ "name": "Layer 4", "bone": "root", "attachment": "Layer 4" },
+	{ "name": "Layer 9", "bone": "root", "attachment": "Layer 9" },
+	{ "name": "Layer 6", "bone": "root", "attachment": "Layer 6" },
+	{ "name": "Layer 2 Copy 11", "bone": "root", "attachment": "Layer 2 Copy 11" },
+	{ "name": "Layer 2 Copy 9", "bone": "root", "attachment": "Layer 2 Copy 9" },
+	{ "name": "Layer 2 Copy 8", "bone": "root", "attachment": "Layer 2 Copy 8" },
+	{ "name": "Layer 5 Copy", "bone": "root", "attachment": "Layer 5 Copy" },
+	{ "name": "Layer 5", "bone": "root", "attachment": "Layer 5" },
+	{ "name": "Layer 2 Copy 7", "bone": "root", "attachment": "Layer 2 Copy 7" },
+	{ "name": "Layer 2 Copy 10", "bone": "root", "attachment": "Layer 2 Copy 10" },
+	{ "name": "Layer 15", "bone": "root", "attachment": "Layer 15" },
+	{ "name": "Layer 15 Copy 2", "bone": "root", "attachment": "Layer 15 Copy 2" },
+	{ "name": "Layer 16", "bone": "root", "attachment": "Layer 16" },
+	{ "name": "Layer 16 Copy 2", "bone": "root", "attachment": "Layer 16 Copy 2" },
+	{ "name": "Layer 14", "bone": "root", "attachment": "Layer 14" },
+	{ "name": "Layer 14 Copy 2", "bone": "root", "attachment": "Layer 14 Copy 2" },
+	{ "name": "Layer 17", "bone": "root", "attachment": "Layer 17" },
+	{ "name": "Layer 18", "bone": "root", "attachment": "Layer 18" },
+	{ "name": "Layer 19", "bone": "root", "attachment": "Layer 19" }
+],
+"skins": {
+	"default": {
+		"Paper": {
+			"Paper": { "x": 50.5, "y": -103.5, "width": 103, "height": 209 }
+		},
+		"Layer 3 Copy 4": {
+			"Layer 3 Copy 4": { "x": 61, "y": -178, "width": 18, "height": 26 }
+		},
+		"Layer 3 Copy 5": {
+			"Layer 3 Copy 5": { "x": 64.5, "y": -184, "width": 19, "height": 14 }
+		},
+		"Layer 3": {
+			"Layer 3": { "x": 62, "y": -143.5, "width": 24, "height": 35 }
+		},
+		"Layer 3 Copy 3": {
+			"Layer 3 Copy 3": { "x": 62.5, "y": -156.5, "width": 25, "height": 45 }
+		},
+		"Layer 3 Copy 9": {
+			"Layer 3 Copy 9": { "x": 40, "y": -178, "width": 18, "height": 26 }
+		},
+		"Layer 3 Copy 8": {
+			"Layer 3 Copy 8": { "x": 36.5, "y": -184, "width": 19, "height": 14 }
+		},
+		"Layer 3 Copy 7": {
+			"Layer 3 Copy 7": { "x": 39, "y": -144, "width": 24, "height": 36 }
+		},
+		"Layer 3 Copy 6": {
+			"Layer 3 Copy 6": { "x": 38.5, "y": -157, "width": 25, "height": 44 }
+		},
+		"Layer 2 Copy": {
+			"Layer 2 Copy": { "x": 50.5, "y": -112, "width": 47, "height": 58 }
+		},
+		"Layer 7": {
+			"Layer 7": { "x": 68, "y": -131, "width": 12, "height": 18 }
+		},
+		"Слой 1": {
+			"Слой 1": { "x": 31, "y": -139.5, "width": 10, "height": 17 }
+		},
+		"Layer 2 Copy 3": {
+			"Layer 2 Copy 3": { "x": 72.5, "y": -97, "width": 19, "height": 36 }
+		},
+		"Layer 2 Copy 4": {
+			"Layer 2 Copy 4": { "x": 78, "y": -120, "width": 22, "height": 40 }
+		},
+		"Layer 2 Copy 5": {
+			"Layer 2 Copy 5": { "x": 28.5, "y": -97, "width": 19, "height": 36 }
+		},
+		"Layer 2 Copy 2": {
+			"Layer 2 Copy 2": { "x": 23, "y": -121, "width": 22, "height": 40 }
+		},
+		"Layer 2 Copy 6": {
+			"Layer 2 Copy 6": { "x": 50.5, "y": -84.5, "width": 67, "height": 37 }
+		},
+		"Layer 13": {
+			"Layer 13": { "x": 50.5, "y": -50.5, "width": 65, "height": 61 }
+		},
+		"Layer 4": {
+			"Layer 4": { "x": 50.5, "y": -76, "width": 23, "height": 22 }
+		},
+		"Layer 9": {
+			"Layer 9": { "x": 50.5, "y": -76, "width": 47, "height": 38 }
+		},
+		"Layer 6": {
+			"Layer 6": { "x": 50.5, "y": -47.5, "width": 59, "height": 53 }
+		},
+		"Layer 2 Copy 11": {
+			"Layer 2 Copy 11": { "x": 50.5, "y": -64, "width": 17, "height": 6 }
+		},
+		"Layer 2 Copy 9": {
+			"Layer 2 Copy 9": { "x": 39, "y": -51, "width": 16, "height": 10 }
+		},
+		"Layer 2 Copy 8": {
+			"Layer 2 Copy 8": { "x": 42, "y": -43, "width": 10, "height": 6 }
+		},
+		"Layer 5 Copy": {
+			"Layer 5 Copy": { "x": 42, "y": -52.5, "width": 8, "height": 9 }
+		},
+		"Layer 5": {
+			"Layer 5": { "x": 59, "y": -52.5, "width": 8, "height": 9 }
+		},
+		"Layer 2 Copy 7": {
+			"Layer 2 Copy 7": { "x": 59, "y": -43, "width": 10, "height": 6 }
+		},
+		"Layer 2 Copy 10": {
+			"Layer 2 Copy 10": { "x": 62, "y": -51, "width": 16, "height": 10 }
+		},
+		"Layer 15": {
+			"Layer 15": { "x": 79.5, "y": -45, "width": 19, "height": 24 }
+		},
+		"Layer 15 Copy 2": {
+			"Layer 15 Copy 2": { "x": 20.5, "y": -46, "width": 17, "height": 22 }
+		},
+		"Layer 16": {
+			"Layer 16": { "x": 67.5, "y": -18.5, "width": 13, "height": 17 }
+		},
+		"Layer 16 Copy 2": {
+			"Layer 16 Copy 2": { "x": 33.5, "y": -19.5, "width": 13, "height": 19 }
+		},
+		"Layer 14": {
+			"Layer 14": { "x": 73, "y": -29.5, "width": 26, "height": 23 }
+		},
+		"Layer 14 Copy 2": {
+			"Layer 14 Copy 2": { "x": 28, "y": -29.5, "width": 26, "height": 23 }
+		},
+		"Layer 17": {
+			"Layer 17": { "x": 50.5, "y": -36.5, "width": 61, "height": 41 }
+		},
+		"Layer 18": {
+			"Layer 18": { "x": 39.5, "y": -47, "width": 25, "height": 64 }
+		},
+		"Layer 19": {
+			"Layer 19": { "x": 69.5, "y": -61, "width": 13, "height": 10 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}
