@@ -1,0 +1,21 @@
+{ "skeleton": { "images": "C:/Users/FoshChu/OneDrive/Изображения/Рисунки/ччччччч/Новая папка/arbalet/images/" },
+"PhotoshopToSpine": { "scale": 1, "padding": 1, "trim": true },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Layer 55", "bone": "root", "attachment": "Layer 55" },
+	{ "name": "Layer 56", "bone": "root", "attachment": "Layer 56" }
+],
+"skins": {
+	"default": {
+		"Layer 55": {
+			"Layer 55": { "x": 121.5, "y": -20, "width": 69, "height": 26 }
+		},
+		"Layer 56": {
+			"Layer 56": { "x": 37.5, "y": -19.5, "width": 59, "height": 25 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}
