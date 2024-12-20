@@ -9,6 +9,7 @@ namespace _Source.Script.Player
         [SerializeField] private Transform shotPoint; // Точка, из которой будет вылетать пуля
         [SerializeField] private int maxBullets = 12;
         [SerializeField] private int currentBullets = 12;
+        [SerializeField] private float timeToDestroy;
         
         [Header("Sprite Renderer")]
         [SerializeField] private SpriteRenderer playerSpriteRenderer; // SpriteRenderer игрока
@@ -54,22 +55,22 @@ namespace _Source.Script.Player
             if (playerSpriteRenderer.sprite.name == "sprites_up")
             {
                 weaponSpriteRenderer.sprite = weaponUpSprite;
-                ResetZPosition(1f); 
+                ResetZPosition(0f); 
             }
             else if (playerSpriteRenderer.sprite.name == "sprites_down")
             {
                 weaponSpriteRenderer.sprite = weaponDownSprite;
-                ResetZPosition(-0.1f);
+                ResetZPosition(0f);
             }
             else if (playerSpriteRenderer.sprite.name == "sprites_left")
             {
                 weaponSpriteRenderer.sprite = weaponLeftSprite;
-                ResetZPosition(-0.1f);
+                ResetZPosition(0f);
             }
             else if (playerSpriteRenderer.sprite.name == "sprites_right")
             {
                 weaponSpriteRenderer.sprite = weaponRightSprite;
-                ResetZPosition(-0.1f);
+                ResetZPosition(0f);
             }
         }
         
@@ -109,6 +110,8 @@ namespace _Source.Script.Player
             // Применяем силу пули (если требуется для твоей логики)
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
             bulletRb.velocity = direction * _shotForce;
+            
+            Destroy(bullet, timeToDestroy);
         }
         
         void Reload()

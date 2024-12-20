@@ -54,21 +54,21 @@ namespace _Source.Script.Player
 
             // Проверяем угол и назначаем спрайт на основе диапазона углов
             if (angle >= -22.5f && angle < 22.5f)           // Право (синий)
-                spriteRenderer.sprite = ESide;
+                transform.rotation = Quaternion.Euler(0, 0, -90);
             else if (angle >= 22.5f && angle < 67.5f)       // Право-вверх (правый фиолетовый)
-                spriteRenderer.sprite = NESide;
+                transform.rotation = Quaternion.Euler(0, 0, -45);
             else if (angle >= 67.5f && angle < 112.5f)      // Вверх (верхний синий)
-                spriteRenderer.sprite = NSide;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             else if (angle >= 112.5f && angle < 157.5f)     // Лево-вверх (левый фиолетовый)
-                spriteRenderer.sprite = WNSide;
+                transform.rotation = Quaternion.Euler(0, 0, 45);
             else if ((angle >= 157.5f && angle <= 180f) || (angle >= -180f && angle < -157.5f)) // Лево (зелёный)
-                spriteRenderer.sprite = WSide;
+                transform.rotation = Quaternion.Euler(0, 0, 90);
             else if (angle >= -157.5f && angle < -112.5f)   // Лево-вниз (левый фиолетовый)
-                spriteRenderer.sprite = WSSide;
+                transform.rotation = Quaternion.Euler(0, 0, 135);
             else if (angle >= -112.5f && angle < -67.5f)    // Вниз (нижний синий)
-                spriteRenderer.sprite = SSide;
+                transform.rotation = Quaternion.Euler(0, 0, 180);
             else if (angle >= -67.5f && angle < -22.5f)     // Право-вниз (правый фиолетовый)
-                spriteRenderer.sprite = SESide;
+                transform.rotation = Quaternion.Euler(0, 0, -135);
         }
         
         bool IsOutOfBounds()

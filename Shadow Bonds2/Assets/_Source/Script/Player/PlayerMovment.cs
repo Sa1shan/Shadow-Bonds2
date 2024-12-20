@@ -7,13 +7,19 @@ namespace _Source.Script.Player
     public class PlayerMovment : MonoBehaviour
     {
         [SerializeField] private Weapon weapon;
-        
+
         [Header("Player Sprites")]
         [SerializeField] private SpriteRenderer playerSpriteRenderer; // SpriteRenderer игрока
         [SerializeField] private Sprite spriteUp;    // Спрайт вверх
         [SerializeField] private Sprite spriteDown;  // Спрайт вниз
         [SerializeField] private Sprite spriteLeft;  // Спрайт влево
         [SerializeField] private Sprite spriteRight; // Спрайт вправо
+
+        [Header("Player Settings")]
+        [SerializeField] private float moveSpeed = 5f; // Скорость перемещения игрока
+
+        [Header("Animator Settings")]
+        [SerializeField] private Animator animator;
 
         private Rigidbody2D rb;
         private Vector2 movement;
@@ -29,8 +35,9 @@ namespace _Source.Script.Player
 
         private void Update()
         {
-            weapon.ismoving = rb.velocity.magnitude > 0.1f;
             
+            weapon.ismoving = rb.velocity.magnitude > 0.1f;
+
             // Проверка нажатия ЛКМ
             isMousePressed = Input.GetMouseButton(0);
 
@@ -66,7 +73,7 @@ namespace _Source.Script.Player
             // Если движение разрешено, двигаем игрока по физике
             if (isMoving && !isMousePressed)
             {
-                rb.velocity = movement.normalized * 5f; // Скорость = 5
+                rb.velocity = movement.normalized * moveSpeed; // Используем переменную moveSpeed
             }
             else if (!isMousePressed)
             {
@@ -77,7 +84,7 @@ namespace _Source.Script.Player
         private void MovePlayer()
         {
             // Двигаем игрока по физике
-            rb.velocity = movement.normalized * 5f;
+            rb.velocity = movement.normalized * moveSpeed; // Используем переменную moveSpeed
         }
 
         private void UpdatePlayerDirection()
@@ -86,13 +93,23 @@ namespace _Source.Script.Player
             if (!isMousePressed)
             {
                 if (movement.y > 0)
-                    playerSpriteRenderer.sprite = spriteUp; // Вверх
+                {
+                    animator.Play("walk up");
+                }
                 else if (movement.y < 0)
-                    playerSpriteRenderer.sprite = spriteDown; // Вниз
+                {
+                    animator.Play("Walk down");
+                }
                 else if (movement.x > 0)
-                    playerSpriteRenderer.sprite = spriteRight; // Вправо
+                {
+                    Rotate(-180f);
+                    animator.Play("dash right");
+                }
                 else if (movement.x < 0)
-                    playerSpriteRenderer.sprite = spriteLeft; // Влево
+                {
+                    animator.Play("walk left");
+                    Debug.Log("left");
+                }
             }
         }
 
@@ -108,25 +125,25 @@ namespace _Source.Script.Player
             if (Mathf.Abs(directionToMouse.x) > Mathf.Abs(directionToMouse.y))
             {
                 if (directionToMouse.x > 0)
-                    playerSpriteRenderer.sprite = spriteRight; // Вправо
+                    SetDirection("Right");
                 else
-                    playerSpriteRenderer.sprite = spriteLeft; // Влево
+                    SetDirection("Left");
             }
             else
             {
                 if (directionToMouse.y > 0)
-                    playerSpriteRenderer.sprite = spriteUp; // Вверх
+                    SetDirection("Up");
                 else
-                    playerSpriteRenderer.sprite = spriteDown; // Вниз
+                    SetDirection("Down");
             }
 
             // Когда ЛКМ нажата, движение игрока запрещено
             canMove = false;
         }
 
-        // Когда отпускаем клавишу для движения (например, "W", "A", "S", "D"), разрешаем движение
         private void EnableMovement()
         {
+            // Разрешаем движение, когда отпускаем клавишу для движения
             canMove = true;
         }
 
@@ -136,6 +153,30 @@ namespace _Source.Script.Player
             if (!isMousePressed)
             {
                 canMove = true; // Разрешаем движение, когда мышь отпущена
+            }
+        }
+
+        private void SetDirection(string direction)
+        {
+            // Устанавливаем параметры в Animator для смены направления
+            animator.SetTrigger(direction);
+        }
+        
+        private void Rotate(float yAngle)
+        {
+            // Вращаем объект вокруг оси Z на заданный угол
+            transform.Rotate(0, yAngle, 0);
+        }
+        
+        private void UpdateAnimator()
+        {
+            // Обновляем параметры анимации в зависимости от состояния игрока
+            animator.SetBool("IsMoving", isMoving);
+
+            if (movement.x != 0 || movement.y != 0)
+            {
+                animator.SetFloat("MoveX", movement.x);
+                animator.SetFloat("MoveY", movement.y);
             }
         }
     }
