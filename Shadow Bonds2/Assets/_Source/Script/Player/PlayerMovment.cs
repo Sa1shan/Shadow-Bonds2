@@ -7,19 +7,16 @@ namespace _Source.Script.Player
     public class PlayerMovment : MonoBehaviour
     {
         [SerializeField] private Weapon weapon;
-
-        [Header("Player Sprites")]
-        [SerializeField] private SpriteRenderer playerSpriteRenderer; // SpriteRenderer игрока
-        [SerializeField] private Sprite spriteUp;    // Спрайт вверх
-        [SerializeField] private Sprite spriteDown;  // Спрайт вниз
-        [SerializeField] private Sprite spriteLeft;  // Спрайт влево
-        [SerializeField] private Sprite spriteRight; // Спрайт вправо
-
+        
         [Header("Player Settings")]
         [SerializeField] private float moveSpeed = 5f; // Скорость перемещения игрока
 
         [Header("Animator Settings")]
         [SerializeField] private Animator animator;
+
+        [Header("Camera Settings")]
+        [SerializeField] private Transform cameraTransform; // Ссылка на трансформ камеры
+        [SerializeField] private Vector3 cameraOffset = new Vector3(0, 0, -10); // Смещение камеры относительно игрока
 
         private Rigidbody2D rb;
         private Vector2 movement;
@@ -35,7 +32,6 @@ namespace _Source.Script.Player
 
         private void Update()
         {
-            
             weapon.ismoving = rb.velocity.magnitude > 0.1f;
 
             // Проверка нажатия ЛКМ
@@ -94,20 +90,19 @@ namespace _Source.Script.Player
             {
                 if (movement.y > 0)
                 {
-                    animator.Play("walk up");
+                    animator.Play("walk up crossbow");
                 }
                 else if (movement.y < 0)
                 {
-                    animator.Play("Walk down");
+                    animator.Play("walk down crossbow");
                 }
                 else if (movement.x > 0)
                 {
-                    Rotate(-180f);
-                    animator.Play("dash right");
+                    animator.Play("walk right crossbow");
                 }
                 else if (movement.x < 0)
                 {
-                    animator.Play("walk left");
+                    animator.Play("walk left crossbow");
                     Debug.Log("left");
                 }
             }
@@ -125,16 +120,16 @@ namespace _Source.Script.Player
             if (Mathf.Abs(directionToMouse.x) > Mathf.Abs(directionToMouse.y))
             {
                 if (directionToMouse.x > 0)
-                    SetDirection("Right");
+                    animator.Play("walk right crossbow");
                 else
-                    SetDirection("Left");
+                    animator.Play("walk left crossbow");
             }
             else
             {
                 if (directionToMouse.y > 0)
-                    SetDirection("Up");
+                    animator.Play("walk up crossbow");
                 else
-                    SetDirection("Down");
+                    animator.Play("walk down crossbow");
             }
 
             // Когда ЛКМ нажата, движение игрока запрещено
@@ -154,6 +149,12 @@ namespace _Source.Script.Player
             {
                 canMove = true; // Разрешаем движение, когда мышь отпущена
             }
+
+            // Камера следит за игроком, добавляем смещение
+            if (cameraTransform != null)
+            {
+                cameraTransform.position = transform.position + cameraOffset;
+            }
         }
 
         private void SetDirection(string direction)
@@ -162,7 +163,7 @@ namespace _Source.Script.Player
             animator.SetTrigger(direction);
         }
         
-        private void Rotate(float yAngle)
+        private void Rotates(float yAngle)
         {
             // Вращаем объект вокруг оси Z на заданный угол
             transform.Rotate(0, yAngle, 0);

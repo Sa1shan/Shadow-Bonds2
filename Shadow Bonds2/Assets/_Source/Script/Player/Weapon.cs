@@ -1,26 +1,21 @@
+using _Source.Script.Enemy;
+using TMPro;
 using UnityEngine;
 
 namespace _Source.Script.Player
 {
     public class Weapon : MonoBehaviour
     {
+        [Header("UI")] [SerializeField] private TextMeshProUGUI tmPro;
+        
         [Header("Bullet")]
-        [SerializeField] private GameObject bulletPrefab; // Префаб пули
-        [SerializeField] private Transform shotPoint; // Точка, из которой будет вылетать пуля
+        [SerializeField] private GameObject bulletPrefab; 
+        [SerializeField] private Transform shotPoint; 
         [SerializeField] private int maxBullets = 12;
         [SerializeField] private int currentBullets = 12;
         [SerializeField] private float timeToDestroy;
+        [SerializeField] private EnemyDie enemyDie;
         
-        [Header("Sprite Renderer")]
-        [SerializeField] private SpriteRenderer playerSpriteRenderer; // SpriteRenderer игрока
-        [SerializeField] private SpriteRenderer weaponSpriteRenderer; // SpriteRenderer оружия
-
-        [Header("Weapon Sprites")]
-        [SerializeField] private Sprite weaponUpSprite;    // Спрайт оружия вверх
-        [SerializeField] private Sprite weaponDownSprite;  // Спрайт оружия вниз
-        [SerializeField] private Sprite weaponLeftSprite;  // Спрайт оружия влево
-        [SerializeField] private Sprite weaponRightSprite; // Спрайт оружия вправо
-
         [HideInInspector] public int CurrentBullets => currentBullets;
         [HideInInspector] public bool ismoving;
         
@@ -45,47 +40,11 @@ namespace _Source.Script.Player
             {
                 Reload();
             }
-
-            UpdateWeaponSprite();
+            tmPro.text = $"{currentBullets}";
         }
-
-        private void UpdateWeaponSprite()
-        {
-            // Проверяем текущий спрайт игрока и меняем спрайт оружия
-            if (playerSpriteRenderer.sprite.name == "sprites_up")
-            {
-                weaponSpriteRenderer.sprite = weaponUpSprite;
-                ResetZPosition(0f); 
-            }
-            else if (playerSpriteRenderer.sprite.name == "sprites_down")
-            {
-                weaponSpriteRenderer.sprite = weaponDownSprite;
-                ResetZPosition(0f);
-            }
-            else if (playerSpriteRenderer.sprite.name == "sprites_left")
-            {
-                weaponSpriteRenderer.sprite = weaponLeftSprite;
-                ResetZPosition(0f);
-            }
-            else if (playerSpriteRenderer.sprite.name == "sprites_right")
-            {
-                weaponSpriteRenderer.sprite = weaponRightSprite;
-                ResetZPosition(0f);
-            }
-        }
-        
-        private void ResetZPosition(float zValue)
-        {
-            // Устанавливаем позицию по z с поддержкой десятичных значений
-            Vector3 position = transform.localPosition;
-            position.z = zValue;
-            transform.localPosition = position;
-        }
-        
         private void Shoot()
         {
             currentBullets--;
-
             // Создаем пулю в точке выстрела
             GameObject bullet = Instantiate(bulletPrefab, shotPoint.position, shotPoint.rotation);
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2169061993040746265}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,14 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7923201125132221464}
-  NSide: {fileID: 21300000, guid: 11a091ddd1a8bc1468d4f3cd1fb0c382, type: 3}
-  SSide: {fileID: 21300000, guid: fa79ffd18394b6744bc93f426889ab4d, type: 3}
-  WSide: {fileID: 21300000, guid: e7d10934287079543973f059581ef58e, type: 3}
-  ESide: {fileID: 21300000, guid: 5d65b7f9d890e3f43b2e44c9431e9431, type: 3}
-  WNSide: {fileID: 21300000, guid: 568ce4bd855df6441ae1e3f1bb2e9991, type: 3}
-  NESide: {fileID: 21300000, guid: 3fa51c441738803438b3170a071211e4, type: 3}
-  WSSide: {fileID: 21300000, guid: 627aed0748509c5488f6409742bc54a7, type: 3}
-  SESide: {fileID: 21300000, guid: 9fa13e8659439de4c951808d815d22bb, type: 3}
   bulletSpeed: 15
 --- !u!114 &2169061993040746265
 MonoBehaviour:

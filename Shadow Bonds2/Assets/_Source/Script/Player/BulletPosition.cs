@@ -1,4 +1,6 @@
 using System;
+using _Source.Script.Enemy;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,19 +9,10 @@ namespace _Source.Script.Player
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer; // SpriteRenderer для объекта
-        
-        [SerializeField] private Sprite NSide;
-        [SerializeField] private Sprite SSide;
-        [SerializeField] private Sprite WSide;
-        [SerializeField] private Sprite ESide;
-        [SerializeField] private Sprite WNSide;
-        [SerializeField] private Sprite NESide;
-        [SerializeField] private Sprite WSSide;
-        [SerializeField] private Sprite SESide;
+        [SerializeField] private float bulletSpeed = 10f; // Скорость пули
         
         private Rigidbody2D _rb; // Ссылка на Rigidbody2D пули
         private Vector2 _direction; // Направление пули
-        [SerializeField] private float bulletSpeed = 10f; // Скорость пули
 
         private void Start()
         {
@@ -33,7 +26,7 @@ namespace _Source.Script.Player
             // Устанавливаем скорость пули
             _rb.velocity = _direction * bulletSpeed;
         }
-
+        
         private void Update()
         {
             if (IsOutOfBounds())
